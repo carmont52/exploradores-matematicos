@@ -1,0 +1,181 @@
+/* Paleta de Colores Inspirada en Entornos Educativos Infantiles */
+:root {
+    --bg-color: #f0fdf4; /* Verde pastel muy muy suave */
+    --primary: #3b82f6; /* Azul brillante */
+    --primary-hover: #2563eb;
+    --secondary: #10b981; /* Verde esmeralda (Aciertos) */
+    --accent: #f59e0b; /* Naranja ámbar */
+    --danger: #ef4444; /* Rojo suave (Errores) */
+    --surface: #ffffff;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --border-light: #e2e8f0;
+
+    --font-heading: 'Baloo 2', cursive;
+    --font-body: 'Quicksand', sans-serif;
+    --radius: 16px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-dark); }
+
+/* ==== HEADER & NAV ==== */
+.app-header {
+    background: var(--surface);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container { display: flex; align-items: center; gap: 0.5rem; }
+.logo-container h1 { font-size: 1.8rem; color: var(--primary); margin: 0; }
+.icon-pizza { font-size: 2rem; }
+
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+.user-info { display: flex; flex-direction: column; text-align: right; font-size: 0.9rem; }
+.score-badge { color: var(--accent); font-weight: bold; }
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 0.5rem;
+    gap: 10px;
+    border-bottom: 2px solid var(--border-light);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover { background: var(--bg-color); color: var(--primary); }
+.nav-btn.active { background: var(--primary); color: white; }
+
+/* ==== MAIN LAYOUT ==== */
+.content-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.hidden { display: none !important; }
+
+.card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.layout-twocol { display: flex; gap: 2rem; }
+@media(max-width: 768px) { .layout-twocol { flex-direction: column; } }
+
+/* ==== COMPONENTS ==== */
+.btn-primary, .btn-secondary {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+.btn-primary.large { padding: 1rem 2rem; font-size: 1.3rem; }
+.btn-secondary { background: var(--border-light); color: var(--text-dark); }
+.btn-secondary:hover { background: #cbd5e1; }
+.btn-portal { background: var(--accent); white-space: nowrap; }
+.btn-portal:hover { background: #d97706; }
+
+/* Forms */
+.name-form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 1.5rem 0; }
+input[type="text"], select, input[type="number"] {
+    padding: 0.8rem;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+}
+input:focus, select:focus { border-color: var(--primary); }
+
+/* Quick Links (Home) */
+.quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.interactive-card { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 2px solid transparent; }
+.interactive-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+
+/* Sidebar (Theory) */
+.sidebar-menu { display: flex; flex-direction: column; gap: 0.5rem; min-width: 250px; }
+.side-btn { text-align: left; background: white; border: 1px solid var(--border-light); padding: 1rem; border-radius: 8px; cursor: pointer; font-family: var(--font-heading); font-size: 1.1rem; }
+.side-btn:hover { background: var(--bg-color); }
+.side-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.topic-content h2 { color: var(--primary); margin-bottom: 1rem; }
+.topic-content img, .topic-content canvas { max-width: 100%; border-radius: 8px; margin: 1rem 0; }
+
+/* ==== FRACTION INPUT WIDGETS ==== */
+.frac-input-widget { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; vertical-align: middle; margin: 0 1rem; }
+.f-num, .f-den { width: 60px; text-align: center; font-size: 1.2rem; font-weight: bold; }
+.f-line { width: 100%; height: 3px; background: var(--text-dark); margin: 5px 0; border-radius: 2px; }
+.mixed-wrapper { display: inline-flex; align-items: center; }
+.f-whole { width: 60px; height: 60px; text-align: center; font-size: 1.5rem; font-weight: bold; margin-right: 5px; }
+
+.practice-input-area { display: flex; justify-content: center; align-items: center; gap: 1rem; min-height: 150px; background: var(--bg-color); border-radius: var(--radius); margin: 2rem 0; padding: 2rem; }
+.action-row { text-align: center; }
+
+/* ==== VISUAL BOARD ==== */
+.visual-board { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+.canvas-item { display: flex; flex-direction: column; align-items: center; }
+.op-item { font-size: 3rem; font-weight: bold; color: var(--text-muted); }
+
+.step-by-step-board { background: #f8fafc; border-left: 5px solid var(--primary); }
+#steps-list { margin-left: 1.5rem; font-size: 1.1rem; margin-bottom: 1rem; }
+#steps-list li { margin-bottom: 0.5rem; }
+.final-answer { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-align: center; background: white; padding: 1rem; border-radius: 8px; border: 1px dashed var(--primary); }
+
+/* ==== QUIZ UI ==== */
+.quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.quiz-progress-text { font-family: var(--font-heading); font-size: 1.2rem; }
+.progress-bar { flex-grow: 1; height: 12px; background: var(--border-light); border-radius: 10px; margin-left: 20px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--secondary); transition: width 0.3s ease; }
+
+.question-body { text-align: center; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.quiz-visual-hint canvas { margin: 1rem 0; }
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; max-width: 600px; margin-top: 1.5rem; }
+.opt-btn { background: white; border: 2px solid var(--primary); color: var(--primary); padding: 1rem; border-radius: 12px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.2s; }
+.opt-btn:hover { background: var(--bg-color); transform: scale(1.02); }
+.opt-btn.correct { background: var(--secondary); border-color: var(--secondary); color: white; }
+.opt-btn.wrong { background: var(--danger); border-color: var(--danger); color: white; }
+
+.final-score-circle { width: 150px; height: 150px; border-radius: 50%; background: var(--primary); color: white; display: flex; justify-content: center; align-items: center; font-size: 3rem; font-weight: bold; margin: 2rem auto; font-family: var(--font-heading); box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+
+.mistake-card { text-align: left; background: white; border: 1px solid var(--border-light); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border-left: 5px solid var(--danger); }
+.mistake-card h4 { color: var(--danger); margin-bottom: 0.5rem; }
+.mistake-card ol { margin-left: 1.5rem; margin-top: 0.5rem; }
+
+.pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }

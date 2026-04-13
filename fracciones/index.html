@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Fracción - ¡Aprende y Juega!</title>
+    <!-- Fuentes amigables -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Placeholder Icons -->
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-container">
+            <span class="icon-pizza">🍕</span>
+            <h1>Mundo Fracción</h1>
+        </div>
+        
+        <div class="header-actions">
+            <div class="user-info">
+                <span>Jugador: <strong id="player-name">Invitado</strong></span>
+                <span class="score-badge">🏆 Mejor Puntaje: <strong id="best-score-display">0</strong></span>
+            </div>
+            <a href="../index.html" class="btn-primary btn-portal">Volver al Menú Principal</a>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <button class="nav-btn active" data-target="home">🏠 Inicio</button>
+        <button class="nav-btn" data-target="theory">📚 Aprende</button>
+        <button class="nav-btn" data-target="practice">✏️ Laboratorio</button>
+        <button class="nav-btn" data-target="quiz">🎮 Desafío</button>
+    </nav>
+
+    <main class="content-container">
+        <!-- SECCIÓN 1: INICIO -->
+        <section id="home" class="view-section active">
+            <div class="card hero-card">
+                <h2>¡Descubre el secreto de las fracciones!</h2>
+                <p>Las fracciones están en todas partes: al repartir una pizza, al medir ingredientes, o al compartir con amigos. ¡Aprende a dominarlas!</p>
+                
+                <div class="name-form">
+                    <label for="input-name">¿Cómo te llamas, explorador?</label>
+                    <input type="text" id="input-name" placeholder="Escribe tu nombre aquí...">
+                    <button class="btn-primary" onclick="app.saveName()">¡A jugar!</button>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <div class="card interactive-card" onclick="app.navigate('theory')">
+                    <h3>Teoría</h3>
+                    <p>Aprende de manera sencilla y visual.</p>
+                </div>
+                <div class="card interactive-card" onclick="app.navigate('practice')">
+                    <h3>Laboratorio Libre</h3>
+                    <p>Calculadora paso a paso con gráficos.</p>
+                </div>
+                <div class="card interactive-card" onclick="app.navigate('quiz')">
+                    <h3>¡Ponte a Prueba!</h3>
+                    <p>Gana puntos respondiendo preguntas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: TEORÍA -->
+        <section id="theory" class="view-section hidden">
+            <div class="layout-twocol">
+                <aside class="sidebar-menu">
+                    <button class="side-btn active" onclick="theory.loadTopic('intro')">¿Qué es una Fracción?</button>
+                    <button class="side-btn" onclick="theory.loadTopic('equivalent')">Fracciones Equivalentes</button>
+                    <button class="side-btn" onclick="theory.loadTopic('mixed')">Números Mixtos e Impropios</button>
+                    <button class="side-btn" onclick="theory.loadTopic('addsub')">Suma y Resta</button>
+                    <button class="side-btn" onclick="theory.loadTopic('muldiv')">Multiplicación y División</button>
+                </aside>
+                <div class="topic-content card" id="theory-content">
+                    <!-- Contenido dinámico inyectado por theory.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: PRÁCTICA (LABORATORIO) -->
+        <section id="practice" class="view-section hidden">
+            <div class="card practice-card">
+                <h2>Pizarra Mágica: Paso a Paso</h2>
+                <p>Elige qué quieres hacer, ingresa los números, y te mostraré gráficamente cómo se hace.</p>
+                
+                <div class="practice-controls">
+                    <select id="practice-operation" onchange="practice.updateOperationUI()">
+                        <option value="add">Suma (+)</option>
+                        <option value="subtract">Resta (-)</option>
+                        <option value="multiply">Multiplicación (x)</option>
+                        <option value="divide">División (÷)</option>
+                        <option value="toMixed">Converit: Fracción Impropia a Mixto</option>
+                        <option value="toImproper">Convertir: Mixto a Fracción Impropia</option>
+                        <option value="simplify">Simplificar una Fracción</option>
+                    </select>
+                </div>
+
+                <div class="practice-input-area" id="practice-input-area">
+                    <!-- Los inputs (inputs duales o mixtos) se generan acá con js -->
+                </div>
+
+                <div class="action-row">
+                    <button class="btn-primary large" onclick="practice.calculateAndShow()">Resolver Paso a Paso</button>
+                </div>
+
+                <!-- Resultados -->
+                <div id="practice-results" class="results-container hidden">
+                    <div class="visual-board">
+                        <div id="visual-f1" class="canvas-item"></div>
+                        <div id="visual-op" class="op-item">+</div>
+                        <div id="visual-f2" class="canvas-item"></div>
+                        <div id="visual-eq" class="op-item">=</div>
+                        <div id="visual-res" class="canvas-item"></div>
+                    </div>
+                    
+                    <div class="step-by-step-board card">
+                        <h3>Análisis del proceso:</h3>
+                        <ol id="steps-list">
+                            <!-- Pasos -->
+                        </ol>
+                        <div class="final-answer" id="final-answer-text"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: DESAFÍO (QUIZ) -->
+        <section id="quiz" class="view-section hidden">
+            <!-- Portada Quiz -->
+            <div class="card quiz-intro" id="quiz-intro">
+                <h2>¿Listo para el desafío de las 10 preguntas?</h2>
+                <p>En este examen combinaremos suma, conversiones y gráficas. ¡Usa papel y lápiz si es necesario!</p>
+                <button class="btn-primary pulse" onclick="quiz.start()">¡Iniciar Cuestionario!</button>
+            </div>
+
+            <!-- Contenedor Activo -->
+            <div class="card quiz-active hidden" id="quiz-active">
+                <div class="quiz-header">
+                    <span class="quiz-progress-text" id="quiz-progress-text">Pregunta 1/10</span>
+                    <div class="progress-bar"><div class="progress-fill" id="quiz-progress-fill"></div></div>
+                </div>
+                
+                <div class="question-body">
+                    <h3 id="quiz-question-title">¿Qué fracción representa la gráfica verde?</h3>
+                    <!-- Canvas de apoyo dinámico opcional -->
+                    <div class="quiz-visual-hint" id="quiz-visual-hint"></div>
+                    
+                    <div class="options-grid" id="quiz-options">
+                        <!-- Botones insertados vía JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultados del Quiz -->
+            <div class="card quiz-results hidden" id="quiz-reports">
+                <h2>¡Desafío completado!</h2>
+                <div class="final-score-circle">
+                    <span id="quiz-final-score">8/10</span>
+                </div>
+                <h3>Revisión de Errores:</h3>
+                <div class="mistakes-container" id="quiz-mistakes">
+                    <!-- Acordeones o listas con el paso a paso de las que falló -->
+                </div>
+                <div class="action-row">
+                    <button class="btn-primary" onclick="app.navigate('home')">Volver al Inicio</button>
+                    <button class="btn-secondary" onclick="quiz.start()">Reintentar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts unificados -->
+    <script src="js/visuals.js"></script>
+    <script src="js/fractions.js"></script>
+    <script src="js/theory.js"></script>
+    <script src="js/practice.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

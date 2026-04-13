@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendizaje de Recta Numérica y Redondeo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Aprendizaje de Recta Numérica y Redondeo</h1>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="../index.html"
+                style="display:inline-block;background:#3498db;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;font-weight:bold;">Volver
+                al Portal</a>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <label for="numberInput">Ingresa un número:</label>
+                <input type="number" id="numberInput" value="12345" placeholder="Ej. 12345">
+            </div>
+
+            <div class="input-group">
+                <label for="roundingSelect">Redondear a la:</label>
+                <select id="roundingSelect">
+                    <option value="1">Unidad</option>
+                    <option value="10">Decena</option>
+                    <option value="100">Centena</option>
+                    <option value="1000">Unidad de Millar</option>
+                    <option value="10000">Decena de Millar</option>
+                    <option value="100000">Centena de Millar</option>
+                    <option value="1000000">Unidad de Millón</option>
+                    <option value="10000000">Decena de Millón</option>
+                    <option value="100000000">Centena de Millón</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="results">
+            <p><strong>Rango inferior:</strong> <span id="lowerBound"></span></p>
+            <p><strong>Valor redondeado:</strong> <span id="roundedValue"></span></p>
+            <p><strong>Rango superior:</strong> <span id="upperBound"></span></p>
+        </div>
+
+        <div class="visualization">
+            <canvas id="numberLineCanvas" width="800" height="200"></canvas>
+        </div>
+
+        <div class="explanation" id="explanation">
+            <!-- Dynamic explanation will go here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendizaje de Ángulos y Triángulos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Geometría Interactiva: Ángulos y Triángulos</h1>
+        <div style="margin-top: 10px;">
+            <a href="../index.html"
+                style="display:inline-block;background:#1abc9c;color:white;padding:10px 20px;border-radius:4px;text-decoration:none;font-weight:bold;">Volver
+                al Portal</a>
+        </div>
+        <nav>
+            <button onclick="showSection('angles')">Ángulos</button>
+            <button onclick="showSection('triangles')">Triángulos</button>
+            <button onclick="showSection('quiz')">Cuestionario</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección de Ángulos -->
+        <section id="angles" class="active">
+            <h2>Tipos de Ángulos</h2>
+            <div class="control-panel">
+                <label for="angleInput">Ajusta el ángulo (grados): <span id="angleValue">45</span>°</label>
+                <input type="range" id="angleInput" min="0" max="360" value="45">
+            </div>
+            <div class="canvas-container">
+                <canvas id="angleCanvas" width="400" height="300"></canvas>
+            </div>
+            <div id="angleDescription" class="info-box">
+                <!-- Descripción dinámica del ángulo -->
+            </div>
+
+            <div class="theory">
+                <h3>Clasificación:</h3>
+                <ul>
+                    <li><strong>Agudo:</strong> Menos de 90°</li>
+                    <li><strong>Recto:</strong> Exactamente 90°</li>
+                    <li><strong>Obtuso:</strong> Más de 90° y menos de 180°</li>
+                    <li><strong>Llano:</strong> Exactamente 180°</li>
+                    <li><strong>Cóncavo (o Reflejo):</strong> Más de 180° y menos de 360°</li>
+                    <li><strong>Completo:</strong> Exactamente 360°</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección de Triángulos -->
+        <section id="triangles" style="display:none;">
+            <h2>Tipos de Triángulos</h2>
+            <div class="controls-triangles">
+                <p>Explora diferentes tipos de triángulos:</p>
+
+                <div class="control-group">
+                    <strong>Por Lados:</strong>
+                    <div class="button-group">
+                        <button onclick="setTriangle('equilateral')">Equilátero</button>
+                        <button onclick="setTriangle('isosceles')">Isósceles</button>
+                        <button onclick="setTriangle('scalene')">Escaleno</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <strong>Por Ángulos:</strong>
+                    <div class="button-group">
+                        <button onclick="setTriangle('acute')">Acutángulo</button>
+                        <button onclick="setTriangle('right')">Rectángulo</button>
+                        <button onclick="setTriangle('obtuse')">Obtusángulo</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="button-group">
+                        <button onclick="generateRandomTriangle()">Aleatorio</button>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="triangleCanvas" width="400" height="300"></canvas>
+            </div>
+            <div id="triangleDescription" class="info-box">
+                <!-- Descripción dinámica del triángulo -->
+            </div>
+
+            <div class="theory">
+                <h3>Clasificación por Lados:</h3>
+                <ul>
+                    <li><strong>Equilátero:</strong> 3 lados iguales</li>
+                    <li><strong>Isósceles:</strong> 2 lados iguales</li>
+                    <li><strong>Escaleno:</strong> 0 lados iguales</li>
+                </ul>
+                <h3>Clasificación por Ángulos:</h3>
+                <ul>
+                    <li><strong>Acutángulo:</strong> 3 ángulos agudos</li>
+                    <li><strong>Rectángulo:</strong> 1 ángulo recto</li>
+                    <li><strong>Obtusángulo:</strong> 1 ángulo obtuso</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección de Cuestionario -->
+        <section id="quiz" style="display:none;">
+            <h2>Pon a prueba tus conocimientos</h2>
+            <div id="quiz-container">
+                <div id="question-area">
+                    <p id="question-text">Presiona "Iniciar" para comenzar.</p>
+                    <div id="canvas-quiz-container" style="display:none;">
+                        <canvas id="quizCanvas" width="300" height="200"></canvas>
+                    </div>
+                    <div id="options" class="options-grid"></div>
+                </div>
+                <button id="start-btn" onclick="startQuiz()">Iniciar Cuestionario</button>
+                <div id="result-area" style="display:none;">
+                    <p id="score-text"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Aplicación educativa de Geometría</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
